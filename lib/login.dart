@@ -1,4 +1,3 @@
-
 import 'package:apphub/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:apphub/login.dart';
@@ -11,13 +10,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passcontroller = TextEditingController();
 
   bool isobscure = true;
 
-  GlobalKey <FormState> formkey = GlobalKey();
+  GlobalKey<FormState> formkey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -40,110 +38,109 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(fontSize: 40, color: Colors.white),
               ),
             ),
-            
             Spacer(),
-
             Container(
               height: 450,
-              
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40)
-                )
-              ),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40))),
               child: Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: Form(
                   key: formkey,
-                  child: Column(children: [
-                  
-                    TextFormField(
-                      validator: (value) {
-                        if(value!.isEmpty){
-                          return "Email can't be empty";
-                        }
-                      },
-                      controller: emailcontroller,
-                      decoration: InputDecoration(
-                  
-                        prefixIcon: Icon(Icons.email),
-                        hintText: "example@gmail.com",
-                        
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(40),
-                          borderSide: BorderSide(color: Colors.blue)
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Email can't be empty";
+                          }
+                        },
+                        controller: emailcontroller,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.email),
+                          hintText: "example@gmail.com",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.blue)),
                         ),
-                      ),  
-                    ),
-                  
-                    SizedBox(height: 30,),
-                  
-                    TextFormField(
-                      validator: (value) {
-                        if(value!.isEmpty){
-                          return "password can't be empty";
-                        }
-                        if(value.length<3){
-                          return "invalid password";
-                        }
-                      },
-
-                      controller: passcontroller,
-                      obscureText: isobscure,
-                      decoration: InputDecoration(
-                  
-                        prefixIcon: Icon(Icons.lock),
-                        suffixIcon: MaterialButton(onPressed: (){
-                          setState(() {
-                            isobscure = !isobscure;
-                          });
-                        }, child: Icon(Icons.visibility),),
-                        hintText: "Enter your Password",
-                        
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(40),
-                          borderSide: BorderSide(color: Colors.blue)
-                        ),
-                      ),  
-                    ),
-                  
-                    SizedBox(height: 20,),
-                  
-                    Text("Forgot your password?"),
-                  
-                    Spacer(),
-                  
-                    MaterialButton(
-                      minWidth: 350,
-                      height: 40,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-                      color: Colors.blueAccent,
-                      onPressed: (){
-                        if(formkey.currentState!.validate()){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Home(),),
-                          );
-                        }
-                      }, 
-                      child: Text("Sign in",style: TextStyle(color: Colors.white),),
                       ),
-                  
-                      
+                      SizedBox(
+                        height: 30,
+                      ),
+                      TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "password can't be empty";
+                          }
+                          if (value.length < 3) {
+                            return "invalid password";
+                          }
+                        },
+                        controller: passcontroller,
+                        obscureText: isobscure,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.lock),
+                          suffixIcon: MaterialButton(
+                            onPressed: () {
+                              setState(() {
+                                isobscure = !isobscure;
+                              });
+                            },
+                            child: Icon(Icons.visibility),
+                          ),
+                          hintText: "Enter your Password",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.blue)),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text("Forgot your password?"),
+                      Spacer(),
+                      MaterialButton(
+                        minWidth: 350,
+                        height: 40,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                        color: Colors.blueAccent,
+                        onPressed: () {
+                          if (formkey.currentState!.validate()) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Home(),
+                              ),
+                            );
+                          }
+                        },
+                        child: Text(
+                          "Sign in",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20),
-                        child: RichText(text: TextSpan(
-                          text: "Don't have account?",style: TextStyle(color: Colors.black),
-                          children: <TextSpan>[
-                            TextSpan(text: "Sign Up",style: TextStyle(color: Colors.blue))
-                          ]
-                        )),
+                        child: RichText(
+                            text: TextSpan(
+                                text: "Don't have account?",
+                                style: TextStyle(color: Colors.black),
+                                children: <TextSpan>[
+                              TextSpan(
+                                  text: "Sign Up",
+                                  style: TextStyle(color: Colors.blue))
+                            ])),
                       )
-                  ],),
+                    ],
+                  ),
                 ),
               ),
             )
-            ],
+          ],
         ),
       ),
     );

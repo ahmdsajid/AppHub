@@ -21,11 +21,19 @@ class _HeaderDrawarState extends State<HeaderDrawar> {
             margin: EdgeInsets.only(bottom: 10.0),
             height: 70,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(image: AssetImage("asset/1-Copy 59405 copy (1).JPG"))
-              
-            ),
-          )
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: AssetImage("asset/1-Copy 59405 copy (1).JPG"))),
+          ),
+          Text(
+            "Mahmudul Sajid",
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            "Flutter Developer",
+            style: TextStyle(color: Colors.black, fontSize: 17),
+          ),
         ],
       ),
     );
