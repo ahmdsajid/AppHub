@@ -1,4 +1,8 @@
+import 'package:apphub/BMI_Calculator.dart';
+import 'package:apphub/Dashboard.dart';
 import 'package:apphub/Header_drawar.dart';
+import 'package:apphub/Profile.dart';
+import 'package:apphub/Visiting_card.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -9,22 +13,31 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  var currentpage = Drawersection.Dashboard;
+
   @override
   Widget build(BuildContext context) {
+    var container;
+    if (currentpage == Drawersection.Dashboard) {
+      container = Dashboardpage();
+    } else if (currentpage == Drawersection.profile) {
+      container = Profilepage();
+    } else if (currentpage == Drawersection.visiting_card) {
+      container = VisitingCardPage();
+    } else if (currentpage == Drawersection.BMI_Calculator) {
+      container = BmiCalculatorPage();
+    }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.blue,
-        title: Text(
+        title: const Text(
           "AppHub",
           style: TextStyle(fontSize: 30),
         ),
       ),
-      body: Container(
-        child: Center(
-          child: Text("Home page", style: TextStyle(fontSize: 25)),
-        ),
-      ),
+      body: container,
       drawer: Drawer(
         child: SingleChildScrollView(
           child: Container(
@@ -42,26 +55,63 @@ class _HomeState extends State<Home> {
 
   Widget Drawerlist() {
     return Container(
-      padding: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
       child: Column(
         children: [
-          Menuitem(),
+          Menuitem(
+            1,
+            "Dashboard",
+            Icons.dashboard_outlined,
+            currentpage == Drawersection.Dashboard ? true : false,
+          ),
+          Menuitem(
+            2,
+            "Profile",
+            Icons.account_box_outlined,
+            currentpage == Drawersection.profile ? true : false,
+          ),
+          const Divider(),
+          Menuitem(
+            3,
+            "Visiting Card",
+            Icons.card_travel,
+            currentpage == Drawersection.visiting_card ? true : false,
+          ),
+          Menuitem(
+            4,
+            "BMI Calculator",
+            Icons.calculate_outlined,
+            currentpage == Drawersection.BMI_Calculator ? true : false,
+          ),
         ],
       ),
     );
   }
 
-  Widget Menuitem() {
+  Widget Menuitem(int id, String title, IconData icon, bool selected) {
     return Material(
       child: InkWell(
-        onTap: (){},
+        onTap: () {
+          Navigator.pop(context);
+          setState(() {
+            if (id == 1) {
+              currentpage = Drawersection.Dashboard;
+            } else if (id == 2) {
+              currentpage = Drawersection.profile;
+            } else if (id == 3) {
+              currentpage = Drawersection.visiting_card;
+            } else if (id == 4) {
+              currentpage = Drawersection.BMI_Calculator;
+            }
+          });
+        },
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Row(
             children: [
               Expanded(
                 child: Icon(
-                  Icons.dashboard_outlined,
+                  icon,
                   size: 20,
                   color: Colors.black,
                 ),
@@ -69,8 +119,8 @@ class _HomeState extends State<Home> {
               Expanded(
                 flex: 3,
                 child: Text(
-                  "Profile Dashboard",
-                  style: TextStyle(fontSize: 20, color: Colors.black),
+                  title,
+                  style: const TextStyle(fontSize: 20, color: Colors.black),
                 ),
               ),
             ],
@@ -79,4 +129,11 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+enum Drawersection {
+  Dashboard,
+  profile,
+  visiting_card,
+  BMI_Calculator,
 }
