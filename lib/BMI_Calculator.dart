@@ -11,6 +11,7 @@ class _BmiCalculatorPageState extends State<BmiCalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      
       child: Center(
         child: Text("BMI Calculator Page",
         style: TextStyle(fontSize: 30),),
